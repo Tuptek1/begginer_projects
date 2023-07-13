@@ -1,13 +1,16 @@
 from tkinter import *
 import tkinter as tk
 
-
-
+chkstate = "Geeks for Geeks updated !!!"
+def counter():
+    global chkstate
+    valid.config(text= chkstate)
+    
 def check(var, index, mode):
     if chbox_var.get() == 1:
-        print("The checkbox is checked")
+        chkstate = "The checkbox is checked"
     else:
-        print("The checkbox is not checked")
+        chkstate = "The checkbox is not checked"
 
 def submit():
     
@@ -43,13 +46,14 @@ usernameLabel = Label(root, text = "Enter your username")
 usernameEntry = Entry(root, textvariable = name_var)
 passwordLabel = Label(root, text = "Enter your password")
 passwordEntry = Entry(root, textvariable = passw_var, show = "*")
+valid = Label(root, text = "geeksforgeeks")
 
 quitButton = Button(root, text = "Quit", command = root.quit)
 
 submitButton1 = Button(root, text = "Submit", command = submit)
 
 chbox_var.trace("w", check)
-checkButton = Checkbutton(root, variable= chbox_var)
+checkButton = Checkbutton(root, command= counter,   text= "Please update")
 
 usernameLabel.grid(column=0, row=0)
 usernameEntry.grid(column=1, row=0)
@@ -59,5 +63,6 @@ passwordEntry.grid(column=1, row=1)
 submitButton1.grid(column=3, row=0, pady= 2)
 quitButton.grid(column=4, row=0, pady= 2)
 checkButton.grid(column=0, row=3, pady= 2)
+valid.grid(column=0, row=4, pady= 2)
 
 root.mainloop()
