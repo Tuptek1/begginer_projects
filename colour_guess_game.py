@@ -2,7 +2,7 @@ from tkinter import *
 import time
 import random
 
-COLOURS = ['red', 'blue', 'green', 'black']
+COLOURS = ['red', 'blue', 'green', 'black', 'pink']
 TIMER = 30
 SCORE = 0
 
@@ -10,10 +10,13 @@ def change_colour():
     global COLOURS
     global SCORE
     chose = random.choice(COLOURS)
-    if answer.get() == chose:
+    colour = answer.get()
+    if colour  == chose:
         SCORE += 1
         var.set("Score: "+str(SCORE))
+        TIMER = 30
     colourLabel.config(fg= chose)
+    
 
 
 def submit():
@@ -51,7 +54,6 @@ timeLabel = Label(root, textvariable= timevar, font= ('Times', 13))
 timeButton = Button(root, text="Start", command=submit)
 
 colourLabel = Label(root, text="Black", font= ('Times', 30))
-
 colourEntry = Entry(root, textvariable= answer)
 
 
