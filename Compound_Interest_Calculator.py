@@ -4,22 +4,44 @@ def calculate_ci():
     principal = int(principal_field.get())    
     rate = float(rate_field.get())
     time = int(time_field.get())
+    
+    pls.set(principal)
+    rls.set(rate)
+    tls.set(time)
       
     CI = principal * (pow((1 + rate / 100), time))
     compound_field.insert(10, CI)
+    principal_field.delete(0, END)  
+    rate_field.delete(0, END)
+    time_field.delete(0, END)
 
 def clearall():
     principal_field.delete(0, END)  
     rate_field.delete(0, END)
     time_field.delete(0, END)
     compound_field.delete(0, END)
-   
+    pls.set("")
+    rls.set("")
+    tls.set("")
+     
     principal_field.focus_set()
 
 root = Tk()
 root.title("Compound Interest Calculator")
 root.geometry('450x300')
 
+pls = StringVar()
+rls = StringVar()
+tls = StringVar()
+
+principleLabelshow = Label(root, textvariable=pls)
+principleLabelshow.grid(row=1, column=3, padx=10, pady=10)
+
+rateLabelshow = Label(root, textvariable= rls)
+rateLabelshow.grid(row=2, column=3, padx=10, pady=10)
+
+timeLabelshow = Label(root, textvariable= tls)
+timeLabelshow.grid(row=3, column=3, padx=10, pady=10)
 
 principleLabel = Label(root, text="Principle Amount(Rs): ")
 principleLabel.grid(row=1, column=0, padx=10, pady=10)
