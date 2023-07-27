@@ -1,4 +1,11 @@
+import requests
 from tkinter import *
+
+response = requests.get('https://randomuser.me/api')
+
+gender = response.json()["results"][0]['gender']
+last_name = response.json()["results"][0]['name']['last']
+first_name = response.json()["results"][0]['name']['first']
 
 class Table:
     def __init__(self, root):
@@ -9,11 +16,7 @@ class Table:
                 self.e.insert(END, lst[i][j])
 
 
-lst = [(1,'Raj','Mumbai',19),
-       (2,'Aaryan','Pune',18),
-       (3,'Vaishnavi','Mumbai',20),
-       (4,'Rachna','Mumbai',21),
-       (5,'Shubham','Delhi',21)] 
+lst = [first_name, last_name, gender] 
   
 total_rows = len(lst)
 total_columns = len(lst[0]) 
