@@ -1,12 +1,18 @@
 import requests
 from tkinter import *
 
-response = requests.get('https://randomuser.me/api')
-
-gender = response.json()["results"][0]['gender']
-last_name = response.json()["results"][0]['name']['last']
-first_name = response.json()["results"][0]['name']['first']
-
+counter = 50
+lst = [] 
+for i in range(0, counter):
+    response = requests.get(f'https://randomuser.me/api/?results={counter}')
+    print(response.json()["results"][i]['gender'])
+    gender = response.json()["results"][i]['gender']
+    last_name = response.json()["results"][i]['name']['last']
+    first_name = response.json()["results"][i]['name']['first']
+    if gender == 'female':
+        lst.append((first_name, last_name, gender))
+    else:
+        counter += 1
 class Table:
     def __init__(self, root):
         for i in range(total_rows):
@@ -16,8 +22,6 @@ class Table:
                 self.e.insert(END, lst[i][j])
 
 
-lst = [first_name, last_name, gender] 
-  
 total_rows = len(lst)
 total_columns = len(lst[0]) 
              
