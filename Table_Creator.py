@@ -1,7 +1,7 @@
 import requests
 from tkinter import *
 
-counter = 50
+counter = 10
 lst = [] 
 for i in range(0, counter):
     response = requests.get(f'https://randomuser.me/api/?results={counter}')
